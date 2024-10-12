@@ -1,0 +1,22 @@
+<div class="timeline">
+    <div class="timeline-content">
+        <div class="timeline-row" *ngFor="let event of timelineData; let i = index">
+            <div class="timeline-label">{{ event.label }}</div>
+            <div class="timeline-bar">
+                <div *ngFor="let season of event.seasons"
+                    class="timeline-season"
+                    [style.width]="calculateWidth(season)"
+                    [style.margin-left]="calculateStart(season)"
+                    matTooltip="{{ season.description }} - Starts: {{ season.start | date: 'fullDate' }} {{ season.start | date: 'shortTime' }}">
+                    {{ season.name }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="timeline-header">
+        <div class="timeline-label"></div>
+        <div class="timeline-x-axis">
+            <div class="timeline-x-label" *ngFor="let date of xAxisDates">{{ date | date: 'MMM' }}</div>
+        </div>
+    </div>
+</div>
